@@ -1,0 +1,83 @@
+import java.time.Instant
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+version = '0.1.0'
+group = 'jihuayu'
+archivesBaseName = 'VoidBucket-Forge-1.16'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+minecraft {
+    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'info'
+            mods {
+                chrome_ball {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run_server')
+            property 'forge.logging.console.level', 'info'
+            mods {
+                chrome_ball {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'info'
+            args '--mod', 'chrome_ball', '--all', '--output', file('src/generated/resources/')
+            mods {
+                chrome_ball {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.16.4-35.1.0'
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Version": "1",
+            "Implementation-Title": project.name,
+            "Implementation-Version": "${version}",
+            "Implementation-Timestamp": DateTimeFormatter.ISO_INSTANT.format(Instant.now().truncatedTo(ChronoUnit.SECONDS))
+        ])
+    }
+}
+
+// Maven publish
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
