@@ -1,4 +1,4 @@
-package org.teacon.chromeball;
+package jihuayu.voidbucket;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SnowballItem;
 import net.minecraft.stats.Stats;
@@ -18,7 +19,7 @@ import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class VoidBucketItem extends SnowballItem {
+public class VoidBucketItem extends Item {
     public VoidBucketItem(Properties builder) {
         super(builder);
     }

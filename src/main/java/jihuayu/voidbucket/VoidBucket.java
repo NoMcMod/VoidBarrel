@@ -1,6 +1,5 @@
-package org.teacon.chromeball;
+package jihuayu.voidbucket;
 
-import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;

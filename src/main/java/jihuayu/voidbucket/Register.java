@@ -1,4 +1,4 @@
-package org.teacon.chromeball;
+package jihuayu.voidbucket;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -10,7 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Register {
-    public static final Item VOID_BUCKET_ITEM = new VoidBucketItem(new Item.Properties().group(ItemGroup.MISC));
+    public static final Item VOID_BUCKET_ITEM = new VoidBucketItem(new Item.Properties().group(ItemGroup.MISC).maxStackSize(1));
 
     @SubscribeEvent
     public static void registerItem(RegistryEvent.Register<Item> event) {
